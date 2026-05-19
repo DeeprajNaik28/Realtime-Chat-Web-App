@@ -1,4 +1,4 @@
-# Realtime Chat App 🚀
+# Realtime Chat Web App 🚀
 
 A modern realtime chat application with secure authentication, live messaging using Socket.IO, and persistent chat storage using MongoDB.
 
