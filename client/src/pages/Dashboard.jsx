@@ -62,7 +62,7 @@ function Dashboard() {
     const loadRecentChats = async () => {
 
       const response = await axios.get(
-        `http://localhost:5000/api/messages/recent/${userInfo._id}`
+        `https://realtime-chat-web-app-ui2m.onrender.com/api/messages/recent/${userInfo._id}`
       );
 
       setRecentChats(response.data);
@@ -99,7 +99,7 @@ function Dashboard() {
     setSelectedUser(user);
 
     const response = await axios.get(
-      `http://localhost:5000/api/messages/${userInfo._id}/${user._id}`
+      `https://realtime-chat-web-app-ui2m.onrender.com/api/messages/${userInfo._id}/${user._id}`
     );
 
     setMessages(response.data);
@@ -121,7 +121,7 @@ function Dashboard() {
     }
 
     const response = await axios.get(
-      `http://localhost:5000/api/users?search=${value}`
+      `https://realtime-chat-web-app-ui2m.onrender.com/api/users?search=${value}`
     );
 
     const filtered = response.data.filter(
