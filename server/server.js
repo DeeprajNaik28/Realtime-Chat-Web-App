@@ -24,7 +24,11 @@ const server = http.createServer(app);
 // SOCKET.IO
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: [
+  "http://localhost:5173",
+  "https://realtime-chat-web-app-lake.vercel.app"
+],
+
     methods: ["GET", "POST"],
   },
 });
