@@ -1,8 +1,13 @@
 import { useState } from "react";
+
+import { useNavigate, Link } from "react-router-dom";
+
 import { signupUser } from "../services/authService";
-import { useNavigate } from "react-router-dom";
+
 function Signup() {
-const navigate = useNavigate();
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -10,31 +15,32 @@ const navigate = useNavigate();
   });
 
   const handleChange = (e) => {
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     try {
 
       const data = await signupUser(formData);
 
-      console.log(data);
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify(data)
+      );
 
       alert("Signup Successful");
 
-localStorage.setItem(
-  "userInfo",
-  JSON.stringify(data)
-);
+      navigate("/");
 
-navigate("/");
-
-window.location.reload();
+      window.location.reload();
 
     } catch (error) {
 
@@ -44,14 +50,15 @@ window.location.reload();
       );
 
     }
+
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0f11] flex items-center justify-center">
+    <div className="min-h-screen bg-[#0f0f11] flex items-center justify-center px-4">
 
       <div className="w-full max-w-md bg-[#1a1a1d] p-8 rounded-3xl shadow-2xl border border-gray-800">
 
-        <h1 className="text-4xl font-bold text-center mb-8">
+        <h1 className="text-4xl font-bold text-center mb-8 text-white">
           Create Account
         </h1>
 
@@ -65,7 +72,7 @@ window.location.reload();
             name="username"
             placeholder="Username"
             onChange={handleChange}
-            className="w-full p-4 rounded-xl bg-[#111] border border-gray-700 outline-none"
+            className="w-full p-4 rounded-xl bg-[#111] border border-gray-700 outline-none text-white"
           />
 
           <input
@@ -73,7 +80,7 @@ window.location.reload();
             name="email"
             placeholder="Email"
             onChange={handleChange}
-            className="w-full p-4 rounded-xl bg-[#111] border border-gray-700 outline-none"
+            className="w-full p-4 rounded-xl bg-[#111] border border-gray-700 outline-none text-white"
           />
 
           <input
@@ -81,16 +88,31 @@ window.location.reload();
             name="password"
             placeholder="Password"
             onChange={handleChange}
-            className="w-full p-4 rounded-xl bg-[#111] border border-gray-700 outline-none"
+            className="w-full p-4 rounded-xl bg-[#111] border border-gray-700 outline-none text-white"
           />
 
           <button
-            className="w-full bg-purple-600 hover:bg-purple-700 transition p-4 rounded-xl font-semibold"
+            type="submit"
+            className="w-full bg-purple-600 hover:bg-purple-700 transition p-4 rounded-xl font-semibold text-white"
           >
             Sign Up
           </button>
 
         </form>
+
+
+        <p className="text-center text-gray-400 mt-6">
+
+          Already have an account?{" "}
+
+          <Link
+            to="/login"
+            className="text-purple-400 hover:text-purple-300"
+          >
+            Login
+          </Link>
+
+        </p>
 
       </div>
 
